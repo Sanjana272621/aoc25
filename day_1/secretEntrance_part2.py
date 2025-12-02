@@ -18,7 +18,6 @@ def secretEntrance_part2():
                 if (oldpos + int(instruction[1:])%100) >= 100 :
                     count += 1
             position %= 100
-            
         return(count)
 
 if __name__ == "__main__":
