@@ -6,10 +6,13 @@ def giftShop():
 
         for indrange in ranges:
             [start, end] = indrange.split("-")
-            if len(start) == len(end):
-                if len(start)%2 == 0:
-                    for i in range(int(start[:int(len(start)/2)]), int(end[int(len(end)/2)])):
-                        print(start, end, i)
+            start = int(start)
+            end = int(end)
+            for i in range(start, end+1):
+                if len(str(i))%2 == 0:
+                    if str(i)[:int(len(str(i))/2)] == str(i)[int(len(str(i))/2):]:
+                        total += i
+        return total
 
 if __name__ == "__main__":
-    giftShop()
+    print(giftShop())
