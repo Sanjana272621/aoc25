@@ -1,6 +1,5 @@
 def lobbyJoultage():
-    #with open("day3_input.txt", "r") as f:
-    with open("sample.txt", "r") as f:
+    with open("day3_input.txt", "r") as f:
         banks = f.read().split("\n")
         total = 0 
 
