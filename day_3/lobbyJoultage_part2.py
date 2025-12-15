@@ -1,28 +1,26 @@
-import heapq
 def lobbyJoultage():
-    #with open("day3_input.txt", "r") as f:
-    with open("sample.txt", "r") as f:
-        banks = f.read().split("\n")
-        total = 0 
+    with open("day3_input.txt", "r") as f:
+        banks = f.read().splitlines()
 
-        for bank in banks:
-            #putting 1 to 12 in heap 
-            heap = []
-            for i in range(1, 13):
-                heapq.heappush(heap, [int(bank[-i]), len(bank)-i]) 
-            heapq.heapify(heap)
-            print(heap)
+    K = 12
+    total = 0
 
-            biggest = int(bank[-i])
-            for i in range(len(bank)-13, -1, -1):
-                if (int(bank[i]) > heap[0][0]):
-                    heapq.heappop(heap)
-                    heapq.heappush(heap, int(bank[i]))
-                    heapq.heapify(heap)
-                    biggest = int(bank[i]) 
-            print(heap)
-        return total
+    for bank in banks:
+        stack = []
+        to_remove = len(bank) - K  
+
+        for ch in bank:
+            while stack and to_remove > 0 and stack[-1] < ch:
+                stack.pop()
+                to_remove -= 1
+
+            stack.append(ch)
+
+        best = int("".join(stack[:K]))
+        total += best
+
+    return total
+
 
 if __name__ == "__main__":
     print(lobbyJoultage())
-    
